@@ -18,8 +18,13 @@ function main(options, callbacks) {
   waitForWin(communicate => {
     // communicate with the popup window.
     communicate("opener says hello.");
+
     // read the popup window's global state and send it back.
     communicate("opener says the window.response value is : " + win.wrappedJSObject.response);
+
+    // try to overwrite the popup window's global state after reading it
+    win.wrappedJSObject.response = 'overwritten by opener';
+    communicate("opener unset the popup's window.response after reading it: " + win.wrappedJSObject.response);
   });
 }
 
