@@ -16,7 +16,10 @@ function main(options, callbacks) {
   }
 
   waitForWin(communicate => {
-    communicate("This is some text from the opener.");
+    // communicate with the popup window.
+    communicate("opener says hello.");
+    // read the popup window's global state and send it back.
+    communicate("opener says the window.response value is : " + win.wrappedJSObject.response);
   });
 }
 
